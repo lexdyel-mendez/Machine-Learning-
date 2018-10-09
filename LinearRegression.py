@@ -1,12 +1,13 @@
 import numpy as np
 import tensorflow as tf
 
-#Array of random data input.
-x_data = np.random.randn(10000, 6)
+
 #The weight (or labels) of the function
-w_real = [0.4, 0.6, 0.2, .5, .10, .12]
+w_real = [0.4, 0.6, 0.2, .5, .10, .12, 13, 92, 54, 10, 93, 89, 17]
 #The y-intercept on the function
 b_real = -0.1
+#Array of random data input.
+x_data = np.random.randn(10000, len(w_real))
 
 #This methods are optional, yet i discovered that it
 #gives a better output without the noise.
@@ -25,13 +26,13 @@ wb = []
 def TrainIt():
     with g.as_default():
         #Tensor holding the input features values
-        x = tf.placeholder(tf.float32, shape=[None, 6], name="features")
+        x = tf.placeholder(tf.float32, shape=[None, len(w_real)], name="features")
         #Tensor holding the label features
         y_true = tf.placeholder(tf.float32, shape=None, name="labels")
 
         #create the variables that hold the weight, the y-intercept and the labels
         with tf.name_scope('inference') as scope:
-            w = tf.Variable([[0,0,0,0,0,0]], dtype=tf.float32, name='W')
+            w = tf.Variable([[0,0,0,0,0,0,0,0,0,0,0,0,0]], dtype=tf.float32, name='W')
             b = tf.Variable(0, dtype=tf.float32, name='b')
             y_pred = tf.matmul(w, tf.transpose(x))+b
 
