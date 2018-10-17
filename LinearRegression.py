@@ -24,8 +24,7 @@ g = tf.Graph()
 wb = []
 
 def TrainIt():
-    with g.as_default():
-        #Tensor holding the input features values
+      #Tensor holding the input features values
         x = tf.placeholder(tf.float32, shape=[None, len(w_real)], name="features")
         #Tensor holding the label features
         y_true = tf.placeholder(tf.float32, shape=None, name="labels")
@@ -61,9 +60,6 @@ def TrainIt():
                 if(step%2==0):
                     print(step, sess.run([w,b]))
                     wb.append(sess.run([w,b]))
-
-
-
 
 def main():
     TrainIt()
